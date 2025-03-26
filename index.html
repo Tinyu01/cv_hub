@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Hub - Full Stack Developer</title>
+    <!-- Modern Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="assets/FreelanceR_Logo.png" type="image/png" sizes="50x50">
+    <style>
+        :root {
+            /* Vibrant 2025 Color Palette */
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --accent-color: #6366f1;
+            --background-light: #f4f4f5;
+            --background-dark: #111827;
+            --text-light: #f9fafb;
+            --text-dark: #111827;
+            --gradient-primary: linear-gradient(135deg, #3b82f6, #6366f1);
+            --gradient-secondary: linear-gradient(135deg, #10b981, #34d399);
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+        }
+
+        /* Scrollbar Styling */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 20px;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            backdrop-filter: blur(15px);
+            background-color: rgba(255, 255, 255, 0.8);
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode .navbar {
+            background-color: rgba(17, 24, 39, 0.9);
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav {
+            margin-right: 45%;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 30%;
+            font-weight: 1000;
+        }
+
+        body.dark-mode .nav-link {
+            color: var(--text-light);
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Dropdown Styles */
+        .dropdown-toggle {
+            font-weight: 500;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .dropdown-menu {
+            backdrop-filter: blur(15px);
+            background-color: rgba(255, 255, 255, 0.95);
+            border: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 82%;
+        }
+
+        body.dark-mode .dropdown-menu {
+            background-color: rgba(17, 24, 39, 0.95);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item {
+            padding: 0.5rem 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .dropdown-divider {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .dropdown-divider {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Dropdown fixes */
+        .dropdown-menu {
+            position: absolute;
+            z-index: 1000;
+            display: none;
+            /* Bootstrap will handle showing it */
+        }
+
+        /* Fix for dark mode */
+        body.dark-mode .dropdown-menu {
+            background-color: var(--background-dark);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        body.dark-mode .dropdown-item {
+            color: var(--text-light);
+        }
+
+        body.dark-mode .dropdown-item:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Dropdown positioning fix */
+        .navbar .dropdown {
+            position: static;
+        }
+
+        .navbar .dropdown-menu {
+            position: absolute;
+            left: auto;
+            right: 0;
+            z-index: 1051;
+        }
+
+        /* Ensure dropdown is visible in navbar */
+        .navbar-collapse {
+            overflow: visible;
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--background-light);
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .hero-section {
+            background: var(--background-dark);
+            color: var(--text-light);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Profile Image Styles */
+        .profile-image-container {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-frame {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--primary-color);
+            margin: 0 auto;
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .profile-frame:hover .profile-image {
+            transform: scale(1.1);
+        }
+
+        .profile-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--accent-color);
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .profile-frame:hover .profile-glow {
+            opacity: 0.7;
+        }
+
+        body.dark-mode .profile-glow {
+            box-shadow: 0 0 20px var(--secondary-color);
+        }
+
+        /* Tech Icons Styles */
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-icon {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .tech-icon:hover {
+            color: var(--accent-color);
+            transform: translateY(-5px) scale(1.2);
+        }
+
+        body.dark-mode .tech-icon {
+            color: var(--secondary-color);
+        }
+
+        body.dark-mode .tech-icon:hover {
+            color: var(--accent-color);
+        }
+
+        /* Tooltip Styles */
+        .tech-icon::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--background-dark);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .tech-icon:hover::after {
+            opacity: 1;
+        }
+
+        body.dark-mode .tech-icon::after {
+            background: var(--background-light);
+            color: var(--text-dark);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        body.dark-mode .hero-title {
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Social Links */
+        .social-links .btn {
+            width: 50px;
+            height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: perspective(500px) rotateX(0deg);
+        }
+
+        .social-links .btn:hover {
+            transform: scale(1.1) perspective(500px) rotateX(10deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Theme Toggle */
+        #theme-toggle {
+            background: transparent;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.4s ease;
+            margin-right: 5%;
+        }
+
+        body.dark-mode #theme-toggle {
+            color: var(--text-light);
+        }
+
+        #theme-toggle:hover {
+            transform: rotate(360deg);
+        }
+
+        /* Floating Download CV Button */
+        .download-cv-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            padding: 15px 25px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .download-cv-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .social-links .btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .dropdown-menu {
+
+                margin-right: 42%;
+            }
+        }
+
+        /* Add animation for the paragraph */
+        .animated-lead {
+            font-size: 1.5rem;
+            /* Default size */
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive font sizes */
+        @media (max-width: 992px) {
+            .animated-lead {
+                font-size: 1.3rem;
+                /* Medium screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .animated-lead {
+                font-size: 1.1rem;
+                /* Small screens */
+            }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center" href="https://tinyu01.github.io/citi_portfolio_website/">
+                <img src="assets/FreelanceR_Logo.png" alt="Logo" width="45" height="45" class="d-inline-block me-2">
+            </a>
+            <div class="dropdown ms-3">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="cvDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Other CV
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cvDropdown">
+                    <li><a class="dropdown-item" href="cv1.html">CV 1</a></li>
+                    <li><a class="dropdown-item" href="cv2.html">CV 2</a></li>
+                    <li><a class="dropdown-item" href="cv3.html">CV 3</a></li>
+                </ul>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="https://tinyu01.github.io/citi_portfolio_website/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-primary fw-bold text-decoration-underline" href="#" target="_blank">CV</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <button id="theme-toggle" aria-label="Toggle theme" class="btn btn-link ms-3">
+                <i class="fas fa-sun" id="sun-icon"></i>
+                <i class="fas fa-moon" id="moon-icon" style="display: none;"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container hero-content">
+            <div class="profile-image-container text-center mb-4">
+                <div class="profile-frame mx-auto"
+                    style="width: 200px; height: 200px; position: relative; border-radius: 50%; overflow: hidden; border: 4px solid var(--primary-color);">
+                    <img src="assets/Profile.jpg" alt="Masingita Ottis Maluleke" class="profile-image">
+                    <div class="profile-glow"></div>
+                </div>
+                <div class="tech-icons justify-content-center mt-3">
+                    <div class="tech-icon" data-tooltip="JavaScript"><i class="fab fa-js"></i></div>
+                    <div class="tech-icon" data-tooltip="React"><i class="fab fa-react"></i></div>
+                    <div class="tech-icon" data-tooltip="Python"><i class="fab fa-python"></i></div>
+                    <div class="tech-icon" data-tooltip="Node.js"><i class="fab fa-node-js"></i></div>
+                </div>
+            </div>
+            <h1 class="hero-title mb-3">MASINGITA OTTIS MALULEKE</h1>
+            <p class="lead mb-4 animated-lead">Innovative Full Stack Developer | AI & Cloud Solutions Specialist</p>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/thefreelancer201/" target="_blank"
+                    class="btn btn-outline-primary">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/Tinyu01" target="_blank" class="btn btn-outline-dark">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://x.com/TheFreelancer20" target="_blank" class="btn btn-outline-info">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CV Button -->
+    <a href="assets/cv's/Full Stack Developer ( Software Engineer).pdf" class="download-cv-btn" download>
+        <i class="fas fa-download me-2"></i>Download CV
+    </a>
+
+    <!-- Load scripts in correct order -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const currentTheme = localStorage.getItem('theme') || 'light-mode';
+            body.classList.add(currentTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const sunIcon = document.getElementById('sun-icon');
+                const moonIcon = document.getElementById('moon-icon');
+
+                if (body.classList.contains('light-mode')) {
+                    body.classList.replace('light-mode', 'dark-mode');
+                    localStorage.setItem('theme', 'dark-mode');
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'inline';
+                } else {
+                    body.classList.replace('dark-mode', 'light-mode');
+                    localStorage.setItem('theme', 'light-mode');
+                    sunIcon.style.display = 'inline';
+                    moonIcon.style.display = 'none';
+                }
+            });
+
+            // Initialize icon visibility based on theme
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            if (body.classList.contains('dark-mode')) {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            } else {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            }
+
+            // Active Navigation Link Highlighting
+            const currentLocation = location.href;
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            navLinks.forEach(link => {
+                if (link.href === currentLocation) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
